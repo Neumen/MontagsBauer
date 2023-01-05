@@ -34,6 +34,7 @@ public class MontagsBauer extends JavaPlugin {
         CommandManager.getInstance().registerCommand(new CommandSetGameArenaTeleportLocation());
         CommandManager.getInstance().registerCommand(new CommandStopGame());
         CommandManager.getInstance().registerCommand(new CommandAddWords());
+        CommandManager.getInstance().registerCommand(new CommandHelp());
 
         // Register startGame command
         this.getCommand("montagsBauer").setExecutor(new CommandMontagsBauer());

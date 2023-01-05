@@ -10,6 +10,7 @@ de\neumen\minecraft\Commands\CommandStartGame.class
 de\neumen\minecraft\IObserver.class
 de\neumen\minecraft\Gamemode\PlayerScore.class
 de\neumen\minecraft\Commands\CommandMontagsBauer.class
+de\neumen\minecraft\Commands\CommandHelp.class
 de\neumen\minecraft\Commands\CommandCreateMontagsBauerGame.class
 de\neumen\minecraft\AbstractSubject.class
 de\neumen\minecraft\ChatEvent.class
@@ -21,5 +22,6 @@ de\neumen\minecraft\Commands\CommandStopGame.class
 de\neumen\minecraft\MontagsBauer.class
 de\neumen\minecraft\Gamemode\MontagsBauerGame$1.class
 de\neumen\minecraft\Commands\CommandListGamePlayers.class
+de\neumen\minecraft\Commands\CommandRemovePlayer.class
 de\neumen\minecraft\Commands\CommandAddPlayerMontagsBauerGame.class
 de\neumen\minecraft\Commands\CommandListWords.class
