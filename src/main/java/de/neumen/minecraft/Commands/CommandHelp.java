@@ -19,7 +19,7 @@ public class CommandHelp extends CustomCommand {
         commandSender.sendMessage("/montagsbauer startGame <GameName>");
         commandSender.sendMessage("/montagsbauer stopGame <GameName>");
         commandSender.sendMessage("/montagsbauer addWords <Word1> <Word2> etc...");
-        commandSender.sendMessage("/montagsbauer listGamePlayer <GameName>");
+        commandSender.sendMessage("/montagsbauer listGamePlayers <GameName>");
         commandSender.sendMessage("/montagsbauer listGames");
         return true;
     }

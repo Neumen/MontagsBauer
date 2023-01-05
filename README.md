@@ -29,7 +29,7 @@ The .jar file can be found in the "target" folder.
 /montagsbauer addWords <Word1> <Word2> etc...
 ```
 ```
-/montagsbauer listGamePlayer <GameName>
+/montagsbauer listGamePlayers <GameName>
 ```
 ```
 /montagsbauer listGames
