@@ -1,0 +1,11 @@
+de\neumen\minecraft\EventListener.class
+de\neumen\minecraft\Commands\CommandCreateMontagsBauerGame.class
+de\neumen\minecraft\MontagsBauer.class
+de\neumen\minecraft\MontagsBauerGame$1.class
+de\neumen\minecraft\Commands\CommandStartGame.class
+de\neumen\minecraft\Commands\CommandListGamePlayers.class
+de\neumen\minecraft\MontagsBauerGamesManager.class
+de\neumen\minecraft\Commands\CommandListGames.class
+de\neumen\minecraft\MontagsBauerGame.class
+de\neumen\minecraft\Commands\CommandAddPlayerMontagsBauerGame.class
+de\neumen\minecraft\Commands\CommandWords.class
