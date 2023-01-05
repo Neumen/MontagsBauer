@@ -1,5 +1,7 @@
 # MontagsBauer
 
+The .jar file can be found in the "target" folder.
+
 ## Commands
 
 ```
