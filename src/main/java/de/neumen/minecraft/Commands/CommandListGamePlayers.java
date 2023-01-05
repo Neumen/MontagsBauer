@@ -1,6 +1,6 @@
 package de.neumen.minecraft.Commands;
 
-import de.neumen.minecraft.MontagsBauerGamesManager;
+import de.neumen.minecraft.Gamemode.MontagsBauerGamesManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

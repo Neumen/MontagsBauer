@@ -1,6 +1,8 @@
 package de.neumen.minecraft;
 
 import de.neumen.minecraft.Commands.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MontagsBauer extends JavaPlugin {
@@ -11,7 +13,7 @@ public class MontagsBauer extends JavaPlugin {
         Config.getInstance().setConfig(getConfig());
 
         // Create default config
-        Config.getInstance().getConfig().addDefault("words", new String[]{"Affe", "Auto", "Jonas S"});
+        Config.getInstance().getConfig().addDefault("words", new String[]{});
         Config.getInstance().getConfig().options().copyDefaults(true);
         saveConfig();
 
@@ -27,12 +29,10 @@ public class MontagsBauer extends JavaPlugin {
         CommandManager.getInstance().registerCommand(new CommandSetGameArena());
         CommandManager.getInstance().registerCommand(new CommandGetGameArena());
         CommandManager.getInstance().registerCommand(new CommandSetGameArenaTeleportLocation());
-
-
+        CommandManager.getInstance().registerCommand(new CommandStopGame());
 
         // Register startGame command
         this.getCommand("montagsBauer").setExecutor(new CommandMontagsBauer());
-
-        getLogger().info("MontagsBauer is loaded!");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "MontagsBauer is loaded!");
     }
 }

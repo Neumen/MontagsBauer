@@ -1,9 +1,8 @@
 package de.neumen.minecraft.Commands;
 
-import de.neumen.minecraft.MontagsBauerGame;
-import de.neumen.minecraft.MontagsBauerGamesManager;
+import de.neumen.minecraft.Gamemode.MontagsBauerGame;
+import de.neumen.minecraft.Gamemode.MontagsBauerGamesManager;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class CommandListGames extends de.neumen.minecraft.Commands.CustomCommand {

@@ -20,6 +20,7 @@ public class EventListenerOnPlayerChat extends AbstractSubject implements Listen
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
+        event.setCancelled(true);
         super.onChange(new ChatEvent(event.getPlayer(), event.getMessage()));
     }
 }

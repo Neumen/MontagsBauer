@@ -1,4 +1,4 @@
-package de.neumen.minecraft;
+package de.neumen.minecraft.Gamemode;
 
 import java.util.ArrayList;
 
@@ -35,5 +35,10 @@ public class MontagsBauerGamesManager {
             }
         }
         return games.add(new MontagsBauerGame(gameTitle));
+    }
+
+    public boolean removeGame(MontagsBauerGame game) {
+        games.remove(game);
+        return true;
     }
 }

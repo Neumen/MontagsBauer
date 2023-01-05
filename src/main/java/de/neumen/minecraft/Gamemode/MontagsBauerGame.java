@@ -1,5 +1,9 @@
-package de.neumen.minecraft;
+package de.neumen.minecraft.Gamemode;
 
+import de.neumen.minecraft.ChatEvent;
+import de.neumen.minecraft.Config;
+import de.neumen.minecraft.EventListenerOnPlayerChat;
+import de.neumen.minecraft.IObserver;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -106,7 +110,8 @@ public class MontagsBauerGame implements IObserver {
                     player.sendMessage("Game starts in ...");
                 }
 
-                for (int i = 0; i < 4; i++) {
+                int i = 0;
+                while(i < 4 && isRunning) {
 
                     currentBuilder = players.get(0);
                     Collections.rotate(players, 1);
@@ -116,8 +121,7 @@ public class MontagsBauerGame implements IObserver {
                     }
 
                     ArrayList<String> words = (ArrayList<String>) Config.getInstance().getConfig().getStringList("words");
-                    Collections.shuffle(words);
-                    currentWord = words.get(0);
+                    currentWord = words.get((int)(Math.random() * words.size()));
 
                     currentBuilder.sendMessage("Your word is: " + currentWord);
 
@@ -134,7 +138,7 @@ public class MontagsBauerGame implements IObserver {
                     }
 
                     int j = 120;
-                    while (j > 0 && !wordGuessed) {
+                    while (j > 0 && !wordGuessed && isRunning) {
                         for (Player player : players) {
                             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(String.valueOf(j)));
                         }
@@ -146,7 +150,9 @@ public class MontagsBauerGame implements IObserver {
                         j--;
                     }
                     currentGameRound += 1;
+                    i++;
                 }
+
                 StringBuilder stringBuilder = new StringBuilder();
                 for (PlayerScore ps:playerScores) {
                     stringBuilder.append(ps.getPlayer().getName() +": " + ps.getScore());
@@ -163,12 +169,15 @@ public class MontagsBauerGame implements IObserver {
         game.start();
     }
 
+    public void stopGame() {
+        isRunning = false;
+    }
 
     @Override
     public void update(ChatEvent ce) {
         if (this.getPlayers().contains(ce.getPlayer())) {
             for (Player player: players) {
-                player.sendMessage(player.getName() + ": " + "Hat " + ce.getMessage() +  " gesagt.");
+                player.sendMessage(player.getName() + ": " + ce.getMessage());
             }
             if (ce.getMessage().equals(currentWord) && !ce.getPlayer().equals(currentBuilder)) {
                 for (Player player:players) {

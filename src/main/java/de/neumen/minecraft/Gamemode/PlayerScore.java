@@ -1,4 +1,4 @@
-package de.neumen.minecraft;
+package de.neumen.minecraft.Gamemode;
 
 import org.bukkit.entity.Player;
 
