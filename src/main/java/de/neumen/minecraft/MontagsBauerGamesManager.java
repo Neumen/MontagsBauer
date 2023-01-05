@@ -3,14 +3,20 @@ package de.neumen.minecraft;
 import java.util.ArrayList;
 
 public class MontagsBauerGamesManager {
+    private static MontagsBauerGamesManager instance = null;
     private final ArrayList<MontagsBauerGame> games = new ArrayList<>();
 
     public ArrayList<MontagsBauerGame> getGames() {
         return games;
     }
 
-    public MontagsBauerGamesManager() {
+    private MontagsBauerGamesManager() {}
 
+    public static MontagsBauerGamesManager getInstance() {
+        if (instance == null) {
+            instance = new MontagsBauerGamesManager();
+        }
+        return instance;
     }
 
     public MontagsBauerGame getGame(String gameTitle) throws Exception {

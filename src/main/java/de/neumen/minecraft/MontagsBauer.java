@@ -1,44 +1,37 @@
 package de.neumen.minecraft;
 
 import de.neumen.minecraft.Commands.*;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MontagsBauer extends JavaPlugin {
 
 
-    FileConfiguration config = getConfig();
-    private MontagsBauerGamesManager mbgManager = new MontagsBauerGamesManager();
-
     @Override
     public void onEnable() {
-
-        getLogger().info("MontagsBauer is loaded!");
+        Config.getInstance().setConfig(getConfig());
 
         // Create default config
-        config.addDefault("words", new String[]{"Affe", "Auto", "Jonas S"});
-        config.options().copyDefaults(true);
+        Config.getInstance().getConfig().addDefault("words", new String[]{"Affe", "Auto", "Jonas S"});
+        Config.getInstance().getConfig().options().copyDefaults(true);
         saveConfig();
 
         // Enable our class to check for new players using onPlayerJoin()
-        getServer().getPluginManager().registerEvents(new EventListener(config), this);
+        getServer().getPluginManager().registerEvents(new EventListenerOnPlayerChat(), this);
 
-        // Register words command
-        this.getCommand("words").setExecutor(new CommandWords(config));
+        CommandManager.getInstance().registerCommand(new CommandAddPlayerMontagsBauerGame());
+        CommandManager.getInstance().registerCommand(new CommandCreateMontagsBauerGame());
+        CommandManager.getInstance().registerCommand(new CommandListGamePlayers());
+        CommandManager.getInstance().registerCommand(new CommandListGames());
+        CommandManager.getInstance().registerCommand(new CommandListWords());
+        CommandManager.getInstance().registerCommand(new CommandStartGame());
+        CommandManager.getInstance().registerCommand(new CommandSetArena());
+        CommandManager.getInstance().registerCommand(new CommandGetGameArena());
 
-        // Register newGame command
-        this.getCommand("createGame").setExecutor(new CommandCreateMontagsBauerGame(mbgManager));
 
-        // Register listgames command
-        this.getCommand("listGames").setExecutor(new CommandListGames(mbgManager));
-
-        // Register addPlayer command
-        this.getCommand("addPlayer").setExecutor(new CommandAddPlayerMontagsBauerGame(mbgManager));
-
-        // Register listGamePlayers command
-        this.getCommand("listGamePlayers").setExecutor(new CommandListGamePlayers(mbgManager));
 
         // Register startGame command
-        this.getCommand("startGame").setExecutor(new CommandStartGame(mbgManager));
+        this.getCommand("montagsBauer").setExecutor(new CommandMontagsBauer());
+
+        getLogger().info("MontagsBauer is loaded!");
     }
 }

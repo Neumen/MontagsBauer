@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 
 public class MontagsBauerGame {
+    private double[] arena = new double[6];
     private String gameTitle;
     private boolean isRunning = false;
     private final ArrayList<String> players = new ArrayList<String>();
@@ -33,6 +34,29 @@ public class MontagsBauerGame {
             throw new Exception("Player is already in the game...");
         }
         return players.add(playerName);
+    }
+
+    public double[] getArena() {
+        return arena;
+    }
+
+    public boolean setArena(String arg, double x, double y , double z) {
+        switch (arg) {
+            case "p1":
+                this.arena[0] = x;
+                this.arena[1] = y;
+                this.arena[2] = z;
+                break;
+            case "p2":
+                this.arena[3] = x;
+                this.arena[4] = y;
+                this.arena[5] = z;
+                break;
+            default:
+                break;
+
+        }
+        return true;
     }
 
     public boolean startGame() throws Exception {

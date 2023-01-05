@@ -2,20 +2,18 @@ package de.neumen.minecraft.Commands;
 
 import de.neumen.minecraft.MontagsBauerGamesManager;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class CommandListGamePlayers implements CommandExecutor {
-    private MontagsBauerGamesManager mbgManager;
+public class CommandListGamePlayers extends de.neumen.minecraft.Commands.CustomCommand {
 
-    public CommandListGamePlayers(MontagsBauerGamesManager mgbManager) {
-        this.mbgManager = mgbManager;
+    public CommandListGamePlayers() {
+        super("listGamePlayers");
     }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
-            commandSender.sendMessage(mbgManager.getGame(strings[0]).getPlayers().toString());
+            commandSender.sendMessage(MontagsBauerGamesManager.getInstance().getGame(strings[1]).getPlayers().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

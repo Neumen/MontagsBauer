@@ -2,26 +2,6 @@ name: MontagsBauer
 version: 1.0
 main: de.neumen.minecraft.MontagsBauer
 commands:
-  words:
-    description: Lists all available words.
-    usage: /words
-
-  createGame:
-    description: Creates a new MontagsBauerGame.
-    usage: /createGame
-
-  listGames:
-    description: Lists all created games.
-    usage: /listGames
-
-  addPlayer:
-    description: Adds a player to an existing game.
-    usage: /addPlayer
-
-  listGamePlayers:
-    description: Lists all players of the given game.
-    usage: /listGamePlayers
-
-  startGame:
-    description: Starts a game.
-    usage: /startGame
+  montagsBauer:
+    description: MontagsBauer commands.
+    usage: /montagsBauer

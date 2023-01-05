@@ -6,19 +6,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class CommandListGames implements CommandExecutor {
+public class CommandListGames extends de.neumen.minecraft.Commands.CustomCommand {
 
-
-    private MontagsBauerGamesManager mbgManager;
-
-    public CommandListGames(MontagsBauerGamesManager mgbManager) {
-        this.mbgManager = mgbManager;
+    public CommandListGames() {
+        super("listGames");
     }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         StringBuilder builder = new StringBuilder();
-        for (MontagsBauerGame game: mbgManager.getGames()) {
+        for (MontagsBauerGame game: MontagsBauerGamesManager.getInstance().getGames()) {
             builder.append(game.getGameTitle());
             builder.append(", ");
         }

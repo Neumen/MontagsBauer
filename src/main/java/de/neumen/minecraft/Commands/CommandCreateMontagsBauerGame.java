@@ -5,12 +5,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class CommandCreateMontagsBauerGame implements CommandExecutor {
+public class CommandCreateMontagsBauerGame extends de.neumen.minecraft.Commands.CustomCommand {
 
-    private MontagsBauerGamesManager mbgManager;
-
-    public CommandCreateMontagsBauerGame(MontagsBauerGamesManager mgbManager) {
-        this.mbgManager = mgbManager;
+    public CommandCreateMontagsBauerGame() {
+        super("createGame");
     }
 
     @Override
@@ -21,8 +19,8 @@ public class CommandCreateMontagsBauerGame implements CommandExecutor {
         }
 
         try {
-            mbgManager.newGame(strings[0]);
-            commandSender.sendMessage("Created new game" +  " " + strings[0]);
+            MontagsBauerGamesManager.getInstance().newGame(strings[1]);
+            commandSender.sendMessage("Created new game" +  " " + strings[1]);
         } catch (Exception e) {
             commandSender.sendMessage(e.getMessage());
         }
