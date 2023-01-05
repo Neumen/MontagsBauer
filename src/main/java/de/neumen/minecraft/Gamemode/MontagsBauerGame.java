@@ -59,6 +59,11 @@ public class MontagsBauerGame implements IObserver {
 
     }
 
+    public boolean removePlayer(Player player) {
+        players.remove(player);
+        return true;
+    }
+
     public boolean setArena(String arg, double x, double y , double z) {
         switch (arg) {
             case "p1":
@@ -149,6 +154,7 @@ public class MontagsBauerGame implements IObserver {
                         }
                         j--;
                     }
+                    wordGuessed = false;
                     currentGameRound += 1;
                     i++;
                 }

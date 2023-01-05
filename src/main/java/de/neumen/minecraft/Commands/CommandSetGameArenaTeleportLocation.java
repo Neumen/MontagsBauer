@@ -19,9 +19,10 @@ public class CommandSetGameArenaTeleportLocation extends CustomCommand {
             Player p = Bukkit.getPlayer(commandSender.getName());
             MontagsBauerGame game = MontagsBauerGamesManager.getInstance().getGame(strings[1]);
             if (p == null) {
-                throw new Exception("P may not be null!");
+                throw new Exception("Player may not be null!");
             }
             game.setArenaTeleportLocation(p.getLocation());
+            commandSender.sendMessage("Changed game arenas teleport position.");
         } catch (Exception e) {
             commandSender.sendMessage(e.getMessage());
         }

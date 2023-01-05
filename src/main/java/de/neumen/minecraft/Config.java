@@ -1,6 +1,10 @@
 package de.neumen.minecraft;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Config {
     private static Config instance = null;
@@ -22,4 +26,10 @@ public class Config {
     public FileConfiguration getConfig() {
         return config;
     }
+
+    public boolean saveConfig() {
+        Bukkit.getPluginManager().getPlugin("MontagsBauer").saveConfig();
+        return true;
+    }
+
 }
