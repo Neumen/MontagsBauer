@@ -16,7 +16,7 @@ public class MontagsBauer extends JavaPlugin {
         saveConfig();
 
         // Enable our class to check for new players using onPlayerJoin()
-        getServer().getPluginManager().registerEvents(new EventListenerOnPlayerChat(), this);
+        getServer().getPluginManager().registerEvents(EventListenerOnPlayerChat.getInstance(), this);
 
         CommandManager.getInstance().registerCommand(new CommandAddPlayerMontagsBauerGame());
         CommandManager.getInstance().registerCommand(new CommandCreateMontagsBauerGame());
@@ -24,8 +24,9 @@ public class MontagsBauer extends JavaPlugin {
         CommandManager.getInstance().registerCommand(new CommandListGames());
         CommandManager.getInstance().registerCommand(new CommandListWords());
         CommandManager.getInstance().registerCommand(new CommandStartGame());
-        CommandManager.getInstance().registerCommand(new CommandSetArena());
+        CommandManager.getInstance().registerCommand(new CommandSetGameArena());
         CommandManager.getInstance().registerCommand(new CommandGetGameArena());
+        CommandManager.getInstance().registerCommand(new CommandSetGameArenaTeleportLocation());
 
 
 

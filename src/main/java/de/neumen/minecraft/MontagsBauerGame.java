@@ -1,20 +1,29 @@
 package de.neumen.minecraft;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Instrument;
-import org.bukkit.Note;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class MontagsBauerGame {
-    private double[] arena = new double[6];
+public class MontagsBauerGame implements IObserver {
+
+    private ArrayList<PlayerScore> playerScores = new ArrayList<>();
+    private boolean wordGuessed = false;
+    private Player currentBuilder = null;
+    private int currentGameRound = 0;
+    private Location arenaTeleportLocation = null;
+    private final double[] arena = new double[6];
     private String gameTitle;
     private boolean isRunning = false;
-    private final ArrayList<String> players = new ArrayList<String>();
+    private final ArrayList<Player> players = new ArrayList<>();
+    private String currentWord;
 
     public MontagsBauerGame(String gameTitle) {
         this.gameTitle = gameTitle;
+        EventListenerOnPlayerChat.getInstance().registerObserver(this);
     }
 
     public String getGameTitle() {
@@ -25,19 +34,25 @@ public class MontagsBauerGame {
         this.gameTitle = gameTitle;
     }
 
-    public ArrayList<String> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public boolean addPlayer(String playerName) throws Exception {
-        if (players.contains(playerName)) {
+    public boolean addPlayer(Player player) throws Exception {
+        if (players.contains(player)) {
             throw new Exception("Player is already in the game...");
         }
-        return players.add(playerName);
+        return players.add(player);
     }
 
     public double[] getArena() {
         return arena;
+    }
+
+    public boolean setArenaTeleportLocation(Location location) {
+        this.arenaTeleportLocation = location;
+        return true;
+
     }
 
     public boolean setArena(String arg, double x, double y , double z) {
@@ -63,29 +78,112 @@ public class MontagsBauerGame {
         if (isRunning) {
             throw new Exception("Game is already running...");
         }
-        for (String playerName: players) {
-            Bukkit.getPlayer(playerName).sendMessage("Game starts in ...");
+
+        isRunning = true;
+
+        for (Player player: players) {
+
+            player.teleport(arenaTeleportLocation);
         }
 
-        Thread startCountdown = new Thread(new Runnable() {
+        for (Player player:players) {
+            playerScores.add(new PlayerScore(player, 0));
+        }
+
+        Collections.shuffle(players);
+
+        game();
+
+        return true;
+    }
+
+    private void game() throws InterruptedException {
+        Thread game = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 3; i > 0; i--) {
-                    for (String playerName: players) {
-                        Player p = Bukkit.getPlayer(playerName);
-                        p.sendMessage(String.valueOf(i));
-                        p.playNote(p.getLocation(), Instrument.BELL, Note.natural(1, Note.Tone.E));
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+                for (Player player : players) {
+                    player.sendMessage("Game starts in ...");
                 }
+
+                for (int i = 0; i < 4; i++) {
+
+                    currentBuilder = players.get(0);
+                    Collections.rotate(players, 1);
+
+                    for (Player player:players) {
+                        player.sendMessage("Next Builder: " + currentBuilder.getName());
+                    }
+
+                    ArrayList<String> words = (ArrayList<String>) Config.getInstance().getConfig().getStringList("words");
+                    Collections.shuffle(words);
+                    currentWord = words.get(0);
+
+                    currentBuilder.sendMessage("Your word is: " + currentWord);
+
+                    for (int j = 3; j > 0; j--) {
+                        for (Player player : players) {
+                            player.sendMessage(String.valueOf(j));
+                            player.playNote(player.getLocation(), Instrument.BELL, Note.natural(1, Note.Tone.E));
+                        }
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    int j = 120;
+                    while (j > 0 && !wordGuessed) {
+                        for (Player player : players) {
+                            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(String.valueOf(j)));
+                        }
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        j--;
+                    }
+                    currentGameRound += 1;
+                }
+                StringBuilder stringBuilder = new StringBuilder();
+                for (PlayerScore ps:playerScores) {
+                    stringBuilder.append(ps.getPlayer().getName() +": " + ps.getScore());
+                    stringBuilder.append(", ");
+                }
+                stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "");
+                String score = stringBuilder.toString();
+                for (Player player:players) {
+                    player.sendMessage(score);
+                }
+                isRunning = false;
             }
         });
+        game.start();
+    }
 
-        startCountdown.start();
-        return true;
+
+    @Override
+    public void update(ChatEvent ce) {
+        if (this.getPlayers().contains(ce.getPlayer())) {
+            for (Player player: players) {
+                player.sendMessage(player.getName() + ": " + "Hat " + ce.getMessage() +  " gesagt.");
+            }
+            if (ce.getMessage().equals(currentWord) && !ce.getPlayer().equals(currentBuilder)) {
+                for (Player player:players) {
+                    player.sendMessage("Player " + ce.getPlayer().getName() + " guessed the right word!");
+                    player.playNote(player.getLocation(), Instrument.BELL, Note.natural(0, Note.Tone.E));
+                }
+                for (PlayerScore ps:playerScores) {
+                    if (ps.getPlayer().getName().equals(ce.getPlayer().getName()) ||
+                    ps.getPlayer().equals(currentBuilder)) {
+                        ps.setScore(ps.getScore() + 1);
+                    }
+                }
+
+                this.wordGuessed = true;
+            }
+        }
     }
 }

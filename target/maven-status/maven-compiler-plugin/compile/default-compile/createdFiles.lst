@@ -2,7 +2,9 @@ de\neumen\minecraft\Commands\CommandMontagsBauer.class
 de\neumen\minecraft\EventListenerOnPlayerChat.class
 de\neumen\minecraft\Commands\CommandCreateMontagsBauerGame.class
 de\neumen\minecraft\MontagsBauerGame$1.class
+de\neumen\minecraft\AbstractSubject.class
 de\neumen\minecraft\ChatEvent.class
+de\neumen\minecraft\Commands\CommandSetGameArena.class
 de\neumen\minecraft\MontagsBauerGamesManager.class
 de\neumen\minecraft\Commands\CommandListGames.class
 de\neumen\minecraft\Config.class
@@ -10,10 +12,11 @@ de\neumen\minecraft\CommandManager.class
 de\neumen\minecraft\Commands\CommandGetGameArena.class
 de\neumen\minecraft\MontagsBauerGame.class
 de\neumen\minecraft\Commands\CustomCommand.class
+de\neumen\minecraft\Commands\CommandSetGameArenaTeleportLocation.class
 de\neumen\minecraft\MontagsBauer.class
 de\neumen\minecraft\Commands\CommandStartGame.class
 de\neumen\minecraft\Commands\CommandListGamePlayers.class
-de\neumen\minecraft\ChatBus.class
+de\neumen\minecraft\PlayerScore.class
+de\neumen\minecraft\IObserver.class
 de\neumen\minecraft\Commands\CommandAddPlayerMontagsBauerGame.class
 de\neumen\minecraft\Commands\CommandListWords.class
-de\neumen\minecraft\Commands\CommandSetArena.class

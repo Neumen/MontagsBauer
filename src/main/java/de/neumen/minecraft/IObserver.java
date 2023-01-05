@@ -1,5 +1,5 @@
 package de.neumen.minecraft;
 
 public interface IObserver {
-    void update();
+    void update(ChatEvent ce);
 }

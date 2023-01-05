@@ -15,7 +15,7 @@ public class CommandGetGameArena extends CustomCommand {
         try {
             StringBuilder stringBuilder = new StringBuilder();
             for (double d:MontagsBauerGamesManager.getInstance().getGame(strings[1]).getArena()) {
-                stringBuilder.append(String.valueOf(d));
+                stringBuilder.append(d);
                 stringBuilder.append(", ");
             }
 

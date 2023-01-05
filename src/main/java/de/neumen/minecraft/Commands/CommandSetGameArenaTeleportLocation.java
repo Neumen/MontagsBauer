@@ -8,20 +8,24 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSetArena extends CustomCommand {
+public class CommandSetGameArenaTeleportLocation extends CustomCommand {
 
-    public CommandSetArena() {
-        super("setGameArena");
+    public CommandSetGameArenaTeleportLocation() {
+        super("setGameArenaTeleportLocation");
     }
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
             Player p = Bukkit.getPlayer(commandSender.getName());
             MontagsBauerGame game = MontagsBauerGamesManager.getInstance().getGame(strings[1]);
-            game.setArena(strings[2], p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
+            if (p == null) {
+                throw new Exception("P may not be null!");
+            }
+            game.setArenaTeleportLocation(p.getLocation());
         } catch (Exception e) {
             commandSender.sendMessage(e.getMessage());
         }
         return true;
-        }
+    }
 }
