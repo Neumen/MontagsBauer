@@ -116,7 +116,7 @@ public class MontagsBauerGame implements IObserver {
                 }
 
                 int i = 0;
-                while(i < 4 && isRunning) {
+                while(i < (3 * players.size()) && isRunning) {
 
                     currentBuilder = players.get(0);
                     Collections.rotate(players, 1);
