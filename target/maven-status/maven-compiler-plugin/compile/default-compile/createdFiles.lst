@@ -6,6 +6,7 @@ de\neumen\minecraft\Gamemode\MontagsBauerGame.class
 de\neumen\minecraft\Gamemode\MontagsBauerGamesManager.class
 de\neumen\minecraft\Commands\CommandSetGameArenaTeleportLocation.class
 de\neumen\minecraft\Commands\CommandAddWords.class
+de\neumen\minecraft\Commands\CommandSetRoundAmount.class
 de\neumen\minecraft\Commands\CommandStartGame.class
 de\neumen\minecraft\IObserver.class
 de\neumen\minecraft\Gamemode\PlayerScore.class
