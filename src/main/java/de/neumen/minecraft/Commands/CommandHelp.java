@@ -14,6 +14,7 @@ public class CommandHelp extends CustomCommand {
         commandSender.sendMessage("/montagsbauer createGame <GameName>");
         commandSender.sendMessage("/montagsbauer deleteGame <GameName>");
         commandSender.sendMessage("/montagsbauer addPlayer <GameName> <PlayerName>");
+        commandSender.sendMessage("/montagsbauer setRoundAmount <GameName> <round amount>");
         commandSender.sendMessage("/montagsbauer removePlayer <GameName> <PlayerName>");
         commandSender.sendMessage("/montagsbauer setGameArenaTeleportLocation <GameName>");
         commandSender.sendMessage("/montagsbauer startGame <GameName>");

@@ -68,3 +68,10 @@ Lists all players of a game.
 /montagsbauer listGames
 ```
 Lists all games.
+
+---
+```
+/montagsbauer setRoundAmount <GameName> <round amount>
+```
+Sets the amount of round for the provided game.
+(Default value is 3)

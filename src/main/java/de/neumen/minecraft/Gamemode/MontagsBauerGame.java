@@ -17,6 +17,7 @@ public class MontagsBauerGame implements IObserver {
     private ArrayList<PlayerScore> playerScores = new ArrayList<>();
     private boolean wordGuessed = false;
     private Player currentBuilder = null;
+    private int roundAmount = 3;
     private int currentGameRound = 0;
     private Location arenaTeleportLocation = null;
     private final double[] arena = new double[6];
@@ -116,7 +117,7 @@ public class MontagsBauerGame implements IObserver {
                 }
 
                 int i = 0;
-                while(i < (3 * players.size()) && isRunning) {
+                while(i < (roundAmount * players.size()) && isRunning) {
 
                     currentBuilder = players.get(0);
                     Collections.rotate(players, 1);
@@ -200,5 +201,9 @@ public class MontagsBauerGame implements IObserver {
                 this.wordGuessed = true;
             }
         }
+    }
+
+    public void setRoundAmount(int roundAmount) {
+        this.roundAmount = roundAmount;
     }
 }
