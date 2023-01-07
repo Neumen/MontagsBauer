@@ -24,6 +24,7 @@ public class MontagsBauer extends JavaPlugin {
         getServer().getPluginManager().registerEvents(EventListenerOnPlayerChat.getInstance(), this);
 
         CommandManager.getInstance().registerCommand(new CommandAddPlayerMontagsBauerGame());
+        CommandManager.getInstance().registerCommand(new CommandRemovePlayer());
         CommandManager.getInstance().registerCommand(new CommandCreateMontagsBauerGame());
         CommandManager.getInstance().registerCommand(new CommandListGamePlayers());
         CommandManager.getInstance().registerCommand(new CommandListGames());
