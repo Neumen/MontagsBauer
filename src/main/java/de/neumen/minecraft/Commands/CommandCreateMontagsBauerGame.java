@@ -13,7 +13,7 @@ public class CommandCreateMontagsBauerGame extends de.neumen.minecraft.Commands.
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (strings.length == 0) {
+        if (strings[1] == null) {
             commandSender.sendMessage("No name was provided.");
             return false;
         }

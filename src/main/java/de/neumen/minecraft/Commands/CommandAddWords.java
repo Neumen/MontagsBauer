@@ -22,7 +22,7 @@ public class CommandAddWords extends CustomCommand {
 
         try {
             if (strings.length < 2) {
-                throw new Exception("No words provided");
+                throw new Exception("No words were provided");
             }
 
             ArrayList<String> words = (ArrayList<String>) Config.getInstance().getConfig().getStringList("words");

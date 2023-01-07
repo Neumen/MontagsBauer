@@ -13,8 +13,8 @@ public class CommandAddPlayerMontagsBauerGame extends de.neumen.minecraft.Comman
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
-            if (strings.length < 2) {
-                throw new Exception("Missing argument.");
+            if (strings[2] == null) {
+                throw new Exception("No player was provided.");
             }
             MontagsBauerGamesManager.getInstance().getGame(strings[1]).addPlayer(Bukkit.getPlayer(strings[2]));
             commandSender.sendMessage("Added player" + " " + strings[2] + " to game" + " " + strings[1]);

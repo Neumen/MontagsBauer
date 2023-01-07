@@ -21,6 +21,11 @@ public class CommandListGames extends de.neumen.minecraft.Commands.CustomCommand
         builder.replace(builder.length() - 2, builder.length(), "");
 
         commandSender.sendMessage(builder.toString());
+
+        if (MontagsBauerGamesManager.getInstance().getGames().size() == 0) {
+            commandSender.sendMessage("There are no existing games");
+        }
+
         return true;
     }
 }

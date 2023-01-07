@@ -13,8 +13,8 @@ public class CommandRemovePlayer extends CustomCommand {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         try {
-            if (strings.length < 2) {
-                throw new Exception("Missing argument.");
+            if (strings[2] == null) {
+                throw new Exception("No player was provided.");
             }
             MontagsBauerGamesManager.getInstance().getGame(strings[1]).removePlayer(Bukkit.getPlayer(strings[2]));
             commandSender.sendMessage("Removed player" + " " + strings[2] + " from game" + " " + strings[1]);
